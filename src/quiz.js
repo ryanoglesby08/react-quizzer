@@ -1,3 +1,5 @@
+/* globals console:false */
+
 import React from 'react';
 
 import Question from './question'
@@ -24,3 +26,6 @@ export default class Quiz extends React.Component {
     );
   }
 }
+Quiz.propTypes = {
+  question: React.PropTypes.object.isRequired
+};

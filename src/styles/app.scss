@@ -18,15 +18,14 @@ html {
   margin: auto;
   padding: 1em;
   border: 1px solid $gray;
-  background-color: lighten($gray, 70%);
+  background-color: lighten($gray, 73%);
 }
 
 ul {
   list-style: none;
 
   li {
-    margin: 0.5em 0;
-    padding: 0.5em;
+    padding: 1em;
   }
 }
 
@@ -40,6 +39,6 @@ ul {
   &:hover {
     border: 1px solid $gray;
     color: $gray;
-    background-color: lighten($gray, 65%);;
+    background-color: lighten($gray, 60%);;
   }
 }

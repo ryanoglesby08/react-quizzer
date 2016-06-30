@@ -22,3 +22,8 @@ export default class Question extends React.Component {
     );
   }
 }
+Question.propTypes = {
+  question: React.PropTypes.object.isRequired,
+  guess: React.PropTypes.string,
+  chooseAnswer: React.PropTypes.func.isRequired
+};

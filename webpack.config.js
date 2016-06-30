@@ -5,6 +5,9 @@ module.exports = {
     filename: 'app.bundle.js'
   },
   module: {
+    preLoaders: [
+      {test: /\.jsx?$/, loader: 'eslint', exclude: /node_modules/}
+    ],
     loaders: [
       {test: /\.jsx?$/, loader: 'babel', exclude: /node_modules/},
       {test: /\.json$/, loader: 'json'},

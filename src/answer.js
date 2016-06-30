@@ -30,3 +30,9 @@ export default class Answer extends React.Component {
     );
   }
 }
+Answer.propTypes = {
+  text: React.PropTypes.string.isRequired,
+  isGuessed: React.PropTypes.bool.isRequired,
+  isCorrect: React.PropTypes.bool.isRequired,
+  chooseAnswer: React.PropTypes.func.isRequired
+};
