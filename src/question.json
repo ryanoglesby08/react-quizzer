@@ -1,4 +1,5 @@
 {
   "title": "Who created React?",
-  "answers": ["Facebook", "Twitter", "Amazon", "Netflix"]
+  "answers": ["Facebook", "Twitter", "Amazon", "Netflix"],
+  "correct": "Facebook"
 }
