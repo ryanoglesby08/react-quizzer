@@ -1,24 +1,32 @@
 import React from 'react';
 
+const guessedStyle = {
+  correct: {
+    backgroundColor: 'lightGreen',
+    border: '1px solid green',
+    color: 'green'
+  },
+  incorrect: {
+    backgroundColor: 'pink',
+    border: '1px solid red',
+    color: 'red'
+  }
+};
+
 export default class Answer extends React.Component {
   render() {
     const handleClick = () => this.props.chooseAnswer(this.props.text);
 
-    const displayGuess = (isGuessed, isCorrect) => {
+    const style = (isGuessed, isCorrect) => {
       if (!isGuessed) {
-        return "";
+        return {};
       }
 
-      return isCorrect ? " Correct!" : " Wrong!"
+      return isCorrect ? guessedStyle.correct : guessedStyle.incorrect;
     };
 
     return (
-      <li onClick={handleClick}>
-        {this.props.text}
-        <span>
-          {displayGuess(this.props.isGuessed, this.props.isCorrect)}
-        </span>
-      </li>
+      <li className="answer" style={style(this.props.isGuessed, this.props.isCorrect)} onClick={handleClick}>{this.props.text}</li>
     );
   }
 }

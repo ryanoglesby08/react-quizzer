@@ -7,7 +7,7 @@ export default class Question extends React.Component {
     return (
       <section>
         <h2>{this.props.question.title}</h2>
-        <ul>
+        <ul className="question">
           {
             this.props.question.answers.map((name) =>
               <Answer key={name}
