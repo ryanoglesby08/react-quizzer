@@ -9,6 +9,7 @@ export default class Quiz extends React.Component {
     super(props);
 
     this.state = {
+      guess: null,
       activeQuestion: 0
     };
     this.setGuess = this.setGuess.bind(this);
@@ -22,14 +23,23 @@ export default class Quiz extends React.Component {
   }
 
   next() {
-    this.setState({activeQuestion: this.state.activeQuestion + 1});
+    this.setState({
+      activeQuestion: this.state.activeQuestion + 1,
+      guess: null
+    });
   }
 
   render() {
+    const isOnLastQuestion = () => this.state.activeQuestion === this.props.questions.length - 1;
+    const hasGuessed = () => this.state.guess !== null;
+    const nextButtonStyle = {
+      display: isOnLastQuestion() || !hasGuessed() ? "none" : ""
+    };
+
     return (
       <div>
         <Question question={this.props.questions[this.state.activeQuestion]} guess={this.state.guess} chooseAnswer={this.setGuess}/>
-        <input type="button" value="Next ->" onClick={this.next} />
+        <input type="button" value="Next ->" style={nextButtonStyle} onClick={this.next} />
       </div>
     );
   }
