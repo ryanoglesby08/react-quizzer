@@ -9,6 +9,6 @@ const data = require('./data.json');
 require('./styles/app.scss');
 
 ReactDOM.render(
-  <Quiz question={data} />,
+  <Quiz questions={data} />,
   document.getElementById("app")
 );

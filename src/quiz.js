@@ -8,8 +8,11 @@ export default class Quiz extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      activeQuestion: 0
+    };
     this.setGuess = this.setGuess.bind(this);
+    this.next = this.next.bind(this);
   }
 
   setGuess(answer) {
@@ -18,14 +21,19 @@ export default class Quiz extends React.Component {
     this.setState({guess: answer});
   }
 
+  next() {
+    this.setState({activeQuestion: this.state.activeQuestion + 1});
+  }
+
   render() {
     return (
       <div>
-        <Question question={this.props.question} guess={this.state.guess} chooseAnswer={this.setGuess}/>
+        <Question question={this.props.questions[this.state.activeQuestion]} guess={this.state.guess} chooseAnswer={this.setGuess}/>
+        <input type="button" value="Next ->" onClick={this.next} />
       </div>
     );
   }
 }
 Quiz.propTypes = {
-  question: React.PropTypes.object.isRequired
+  questions: React.PropTypes.array.isRequired
 };

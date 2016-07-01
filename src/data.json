@@ -1,5 +1,12 @@
-{
-  "title": "Who created React?",
-  "answers": ["Facebook", "Twitter", "Amazon", "Netflix"],
-  "correct": "Facebook"
-}
+[
+  {
+    "title": "Who created React?",
+    "answers": ["Facebook", "Twitter", "Amazon", "Netflix"],
+    "correct": "Facebook"
+  },
+  {
+    "title": "Which one of these is not a JS framework/library?",
+    "answers": ["React", "Angular", "Rails", "Ember"],
+    "correct": "Rails"
+  }
+]
