@@ -3,6 +3,30 @@ import React from 'react';
 import Answer from './answer'
 
 export default class Question extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      guess: null
+    };
+    this.chooseGuess = this.chooseGuess.bind(this);
+  }
+
+  chooseGuess(guess) {
+    if (this.state.guess === null) {
+      this.props.chooseAnswer(guess);
+    }
+
+    this.setState({guess: guess});
+  }
+
+  // React Component lifecycle method
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.question.title !== this.props.question.title) {
+      this.setState({guess: null});
+    }
+  }
+
   render() {
     return (
       <section>
@@ -12,9 +36,9 @@ export default class Question extends React.Component {
             this.props.question.answers.map((name) =>
               <Answer key={name}
                       text={name}
-                      isGuessed={name === this.props.guess}
+                      isGuessed={name === this.state.guess}
                       isCorrect={name === this.props.question.correct}
-                      chooseAnswer={this.props.chooseAnswer}/>
+                      chooseGuess={this.chooseGuess}/>
             )
           }
         </ul>
@@ -24,6 +48,5 @@ export default class Question extends React.Component {
 }
 Question.propTypes = {
   question: React.PropTypes.object.isRequired,
-  guess: React.PropTypes.string,
   chooseAnswer: React.PropTypes.func.isRequired
 };

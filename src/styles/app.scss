@@ -16,9 +16,12 @@ html {
 .container {
   width: 960px;
   margin: auto;
-  padding: 1em;
   border: 1px solid $gray;
   background-color: lighten($gray, 73%);
+}
+
+section {
+  padding: 1em;
 }
 
 ul {
@@ -26,6 +29,14 @@ ul {
 
   li {
     padding: 1em;
+  }
+}
+
+button {
+  padding: .75em;
+
+  &:hover:enabled {
+    cursor: pointer;
   }
 }
 
@@ -41,4 +52,12 @@ ul {
     color: $gray;
     background-color: lighten($gray, 60%);;
   }
+}
+
+.actions {
+  text-align: right;
+}
+
+.scoreboard {
+  border-top: 1px solid $gray;
 }

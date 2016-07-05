@@ -3,43 +3,76 @@
 import React from 'react';
 
 import Question from './question'
+import Scoreboard from './scoreboard'
+
+class Answer {
+  constructor(question) {
+    this.title = question.title;
+    this.answers = question.answers;
+    this.correct = question.correct;
+
+    this.guess = null;
+  }
+
+  hasBeenGuessed() {
+    return this.guess !== null;
+  }
+
+  hasBeenGuessedCorrectly() {
+    return this.hasBeenGuessed() && this.guess === this.correct;
+  }
+
+  answer(guess) {
+    this.guess = guess;
+    return this;
+  }
+}
 
 export default class Quiz extends React.Component {
   constructor(props) {
     super(props);
 
+    const progress = this.props.questions.map((question) => new Answer(question));
+    this.progressIterator = progress.values();
+    this.current = this.progressIterator.next();
+
     this.state = {
-      guess: null,
-      activeQuestion: 0
+      progress: progress
     };
-    this.setGuess = this.setGuess.bind(this);
+
+    this.chooseAnswer = this.chooseAnswer.bind(this);
     this.next = this.next.bind(this);
   }
 
-  setGuess(answer) {
-    console.log(`Chosen answer = ${answer}`);
+  chooseAnswer(guess) {
+    console.log(`Chosen answer = ${guess}`);
 
-    this.setState({guess: answer});
+    this.current.value.answer(guess);
+    this.setState({progress: this.state.progress});
   }
 
   next() {
-    this.setState({
-      activeQuestion: this.state.activeQuestion + 1,
-      guess: null
-    });
+    this.current = this.progressIterator.next();
+    this.setState({progress: this.state.progress});
   }
 
   render() {
-    const isOnLastQuestion = () => this.state.activeQuestion === this.props.questions.length - 1;
-    const hasGuessed = () => this.state.guess !== null;
-    const nextButtonStyle = {
-      display: isOnLastQuestion() || !hasGuessed() ? "none" : ""
-    };
+    if (this.current.done) {
+      return (
+        <div>
+          <p>You are done!</p>
+          <Scoreboard progress={this.state.progress}/>
+        </div>
+      );
+    }
 
     return (
       <div>
-        <Question question={this.props.questions[this.state.activeQuestion]} guess={this.state.guess} chooseAnswer={this.setGuess}/>
-        <input type="button" value="Next ->" style={nextButtonStyle} onClick={this.next} />
+        <Question question={this.current.value} chooseAnswer={this.chooseAnswer}/>
+        <section className="actions">
+          <button onClick={this.next}>Next -&gt;</button>
+        </section>
+        <Scoreboard progress={this.state.progress}/>
       </div>
     );
   }

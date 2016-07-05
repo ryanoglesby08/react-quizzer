@@ -15,7 +15,7 @@ const guessedStyle = {
 
 export default class Answer extends React.Component {
   render() {
-    const handleClick = () => this.props.chooseAnswer(this.props.text);
+    const handleClick = () => this.props.chooseGuess(this.props.text);
 
     const style = (isGuessed, isCorrect) => {
       if (!isGuessed) {
@@ -34,5 +34,5 @@ Answer.propTypes = {
   text: React.PropTypes.string.isRequired,
   isGuessed: React.PropTypes.bool.isRequired,
   isCorrect: React.PropTypes.bool.isRequired,
-  chooseAnswer: React.PropTypes.func.isRequired
+  chooseGuess: React.PropTypes.func.isRequired
 };
