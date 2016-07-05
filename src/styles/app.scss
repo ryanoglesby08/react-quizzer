@@ -60,4 +60,12 @@ button {
 
 .scoreboard {
   border-top: 1px solid $gray;
+  text-align: center;
+}
+
+.history {
+  .badge {
+    float: right;
+    font-variant: small-caps;
+  }
 }

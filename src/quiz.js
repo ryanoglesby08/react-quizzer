@@ -4,6 +4,7 @@ import React from 'react';
 
 import Question from './question'
 import Scoreboard from './scoreboard'
+import History from './history'
 
 class Answer {
   constructor(question) {
@@ -60,7 +61,7 @@ export default class Quiz extends React.Component {
     if (this.current.done) {
       return (
         <div>
-          <p>You are done!</p>
+          <History history={this.state.progress}/>
           <Scoreboard progress={this.state.progress}/>
         </div>
       );
